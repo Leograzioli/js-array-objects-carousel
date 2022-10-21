@@ -40,9 +40,9 @@ imageCard[sliderPosition].classList.add("active");
 lowerImageCard[sliderPosition].classList.add("active");
 
 //button click
-rightSlider(images, imageCard, lowerImageCard, sliderPosition);
-leftSlider(imageCard, lowerImageCard, sliderPosition);
-onImgClick(imageCard, lowerImageCard, sliderPosition);
+rightSlider(images, imageCard, lowerImageCard);
+leftSlider(imageCard, lowerImageCard);
+onImgClick(imageCard, lowerImageCard);
 
 // FUNCTIONS
 
@@ -81,17 +81,17 @@ function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
 
     rightBtn.addEventListener("click", () => {
 
-    elementHtml1[slider].classList.remove("active");
-    elementHtml2[slider].classList.remove("active");
+    elementHtml1[sliderPosition].classList.remove("active");
+    elementHtml2[sliderPosition].classList.remove("active");
 
-    if (slider < (imgArray.length - 1)){
-        slider++
+    if (sliderPosition < (imgArray.length - 1)){
+        sliderPosition++
     } else {
-        slider = 0
+        sliderPosition = 0
     }
 
-    elementHtml1[slider].classList.add("active");
-    elementHtml2[slider].classList.add("active");
+    elementHtml1[sliderPosition].classList.add("active");
+    elementHtml2[sliderPosition].classList.add("active");
 });
 }
 
@@ -103,17 +103,17 @@ function leftSlider (elementHtml1, elementHtml2, slider) {
     const leftBtn = document.querySelector(".left");
 
     leftBtn.addEventListener("click", () => {
-    elementHtml1[slider].classList.remove("active");
-    elementHtml2[slider].classList.remove("active");
+    elementHtml1[sliderPosition].classList.remove("active");
+    elementHtml2[sliderPosition].classList.remove("active");
 
-    if (slider > 0){
-        slider--
+    if (sliderPosition > 0){
+        sliderPosition--
     } else {
-        slider = 4
+        sliderPosition = 4
     }
     
-    elementHtml1[slider].classList.add("active");
-    elementHtml2[slider].classList.add("active");
+    elementHtml1[sliderPosition].classList.add("active");
+    elementHtml2[sliderPosition].classList.add("active");
 })
 }
 
@@ -121,17 +121,17 @@ function leftSlider (elementHtml1, elementHtml2, slider) {
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
 // slider - the slider position to sinc with the click
-function onImgClick(elementHtml1, elementHtml2, slider) {
+function onImgClick(elementHtml1, elementHtml2) {
     elementHtml2.forEach((element, index) => {
         element.addEventListener("click", () => {
             
-            elementHtml1[slider].classList.remove("active");
-            elementHtml2[slider].classList.remove("active");
+            elementHtml1[sliderPosition].classList.remove("active");
+            elementHtml2[sliderPosition].classList.remove("active");
            
-            slider = index;
+            sliderPosition = index;
             
-            elementHtml1[slider].classList.add("active");
-            elementHtml2[slider].classList.add("active");
+            elementHtml1[sliderPosition].classList.add("active");
+            elementHtml2[sliderPosition].classList.add("active");
         })
 });
 }
