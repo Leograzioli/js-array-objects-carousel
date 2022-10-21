@@ -40,7 +40,6 @@ imageCard[sliderPosition].classList.add("active");
 lowerImageCard[sliderPosition].classList.add("active");
 
 //button click
-
 rightSlider(images, imageCard, lowerImageCard, sliderPosition);
 leftSlider(imageCard, lowerImageCard, sliderPosition);
 onImgClick(imageCard, lowerImageCard, sliderPosition);
@@ -74,10 +73,14 @@ function CreateElement (arrayImg) {
 
 //when right button is click, shows the next pic 
 //imgArray (array) -> to know how many pic are and set as limit
+// elementHtml1 -> (element html) element html to add and remove class
+// elementHtml2 -> (element html) element html to add and remove class
+// slider - the slider position to sinc with the click
 function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
     const rightBtn = document.querySelector(".right");
 
     rightBtn.addEventListener("click", () => {
+
     elementHtml1[slider].classList.remove("active");
     elementHtml2[slider].classList.remove("active");
 
@@ -93,6 +96,9 @@ function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
 }
 
 //when right button is click, shows the next pic 
+// elementHtml1 -> (element html) element html to add and remove class
+// elementHtml2 -> (element html) element html to add and remove class
+// slider - the slider position to sinc with the click
 function leftSlider (elementHtml1, elementHtml2, slider) {
     const leftBtn = document.querySelector(".left");
 
@@ -111,6 +117,10 @@ function leftSlider (elementHtml1, elementHtml2, slider) {
 })
 }
 
+//on image click change the main picture
+// elementHtml1 -> (element html) element html to add and remove class
+// elementHtml2 -> (element html) element html to add and remove class
+// slider - the slider position to sinc with the click
 function onImgClick(elementHtml1, elementHtml2, slider) {
     elementHtml2.forEach((element, index) => {
         element.addEventListener("click", () => {
