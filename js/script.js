@@ -41,21 +41,9 @@ lowerImageCard[sliderPosition].classList.add("active");
 
 //button click
 
-rightSlider(images);
-leftSlider();
-
-lowerImageCard.forEach((element, index) => {
-        element.addEventListener("click", () => {
-            
-            imageCard[sliderPosition].classList.remove("active");
-            lowerImageCard[sliderPosition].classList.remove("active");
-           
-            sliderPosition = index
-            
-            imageCard[sliderPosition].classList.add("active");
-            lowerImageCard[sliderPosition].classList.add("active");
-        })
-});
+rightSlider(images, imageCard, lowerImageCard, sliderPosition);
+leftSlider(imageCard, lowerImageCard, sliderPosition);
+onImgClick(imageCard, lowerImageCard, sliderPosition);
 
 // FUNCTIONS
 
@@ -86,39 +74,54 @@ function CreateElement (arrayImg) {
 
 //when right button is click, shows the next pic 
 //imgArray (array) -> to know how many pic are and set as limit
-function rightSlider (imgArray) {
+function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
     const rightBtn = document.querySelector(".right");
 
     rightBtn.addEventListener("click", () => {
-    imageCard[sliderPosition].classList.remove("active");
-    lowerImageCard[sliderPosition].classList.remove("active");
+    elementHtml1[slider].classList.remove("active");
+    elementHtml2[slider].classList.remove("active");
 
-    if (sliderPosition < (imgArray.length - 1)){
-        sliderPosition++
+    if (slider < (imgArray.length - 1)){
+        slider++
     } else {
-        sliderPosition = 0
+        slider = 0
     }
 
-    imageCard[sliderPosition].classList.add("active");
-    lowerImageCard[sliderPosition].classList.add("active");
+    elementHtml1[slider].classList.add("active");
+    elementHtml2[slider].classList.add("active");
 });
 }
 
 //when right button is click, shows the next pic 
-function leftSlider () {
+function leftSlider (elementHtml1, elementHtml2, slider) {
     const leftBtn = document.querySelector(".left");
 
     leftBtn.addEventListener("click", () => {
-    imageCard[sliderPosition].classList.remove("active");
-    lowerImageCard[sliderPosition].classList.remove("active");
+    elementHtml1[slider].classList.remove("active");
+    elementHtml2[slider].classList.remove("active");
 
-    if (sliderPosition > 0){
-        sliderPosition --
+    if (slider > 0){
+        slider--
     } else {
-        sliderPosition = 4
+        slider = 4
     }
     
-    imageCard[sliderPosition].classList.add("active");
-    lowerImageCard[sliderPosition].classList.add("active");
+    elementHtml1[slider].classList.add("active");
+    elementHtml2[slider].classList.add("active");
 })
+}
+
+function onImgClick(elementHtml1, elementHtml2, slider) {
+    elementHtml2.forEach((element, index) => {
+        element.addEventListener("click", () => {
+            
+            elementHtml1[slider].classList.remove("active");
+            elementHtml2[slider].classList.remove("active");
+           
+            slider = index;
+            
+            elementHtml1[slider].classList.add("active");
+            elementHtml2[slider].classList.add("active");
+        })
+});
 }
