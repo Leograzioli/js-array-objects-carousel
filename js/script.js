@@ -38,11 +38,13 @@ console.log(lowerImageCard);
 let sliderPosition = 0;
 imageCard[sliderPosition].classList.add("active");
 lowerImageCard[sliderPosition].classList.add("active");
+autoPlay(imageCard, lowerImageCard)
 
 //button click
 rightSlider(images, imageCard, lowerImageCard);
 leftSlider(imageCard, lowerImageCard);
 onImgClick(imageCard, lowerImageCard);
+
 
 // FUNCTIONS
 
@@ -132,3 +134,52 @@ function onImgClick(elementHtml1, elementHtml2) {
         })
 });
 }
+
+
+//to automaticly change pictures and to set buttons to invert or stop autoplay 
+// elementHtml1 -> (element html) element html to add and remove class
+// elementHtml2 -> (element html) element html to add and remove class
+function autoPlay (elementHtml1, elementHtml2) {
+    const stopBtn = document.querySelector(".stop-btn")
+    const interval = setInterval(() => {
+        elementHtml1[sliderPosition].classList.remove("active");
+        elementHtml2[sliderPosition].classList.remove("active");
+        
+        sliderPosition++
+        if (sliderPosition > 4)
+        sliderPosition = 0 ;
+        
+        elementHtml1[sliderPosition].classList.add("active");
+        elementHtml2[sliderPosition].classList.add("active");
+        
+        stopBtn.addEventListener("click", () => {
+            
+            clearInterval(interval);
+        })
+    }, 2000);
+    
+    
+    const revertBtn = document.querySelector(".invert-btn");
+    revertBtn.addEventListener("click", () => {
+        clearInterval(interval)
+
+        const reverseInterval = setInterval(() => {
+
+            elementHtml1[sliderPosition].classList.remove("active");
+        elementHtml2[sliderPosition].classList.remove("active");
+        
+        sliderPosition--
+        if (sliderPosition < 0)
+        sliderPosition = 4 ;
+        
+        elementHtml1[sliderPosition].classList.add("active");
+        elementHtml2[sliderPosition].classList.add("active");
+
+        stopBtn.addEventListener("click", () => {
+            
+            clearInterval(reverseInterval);
+        })
+        }, 2000)
+    })
+}
+
