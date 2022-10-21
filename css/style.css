@@ -9,6 +9,9 @@ img {
     height: 100%;
 }
 
+body {
+    background-color: lightblue;
+}
 /******* MAIN *******/
 .container {
     width: 80%;
@@ -31,9 +34,10 @@ img {
     width: 100%;
     height: 700px;
 }
- /* uper slider  */
-.upper-slide {
+ /* uper slide  */
+.card-img {
     position: relative;
+    display: none;
     width: 100%;
     height: 550px;
     object-fit: cover;
@@ -47,7 +51,7 @@ img {
     color: white;
 }
 
-  /* lower slider  */
+  /* lower slide  */
 .lower-slide {
     position: relative;
     display: flex;
@@ -94,6 +98,18 @@ img {
     background-color: black;
 }
 
+.img-col.active {
+    border: 3px solid rgb(197, 197, 197);
+}
+
+.img-col.active img {
+    opacity: 1;
+}
+
 .img-col:hover img {
     opacity: 1;
+}
+
+.active {
+    display: flex!important;
 }
