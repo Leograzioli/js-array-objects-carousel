@@ -26,9 +26,6 @@ const images = [
 const imgTittleArray = images.map(element => element.title);
 const imgTextArray = images.map(element => element.text);
 
-const upperSlide = document.querySelector(".upper-slide")
-const lowerSlide = document.querySelector(".lower-slide")
-
 CreateElement(images);
 
 //initial slider status
@@ -53,6 +50,9 @@ onImgClick(imageCard, lowerImageCard);
 //arrayText -> (array) text array to add on img
 //arrayTtitle -> (array) title array to add on img
 function CreateElement (arrayImg) {
+    const upperSlide = document.querySelector(".upper-slide")
+    const lowerSlide = document.querySelector(".lower-slide")
+
     arrayImg.map((element) => {
         const upperImg = `
             <div class="card-img">
