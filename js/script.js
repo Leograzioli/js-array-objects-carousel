@@ -75,7 +75,6 @@ function CreateElement (arrayImg) {
 //imgArray (array) -> to know how many pic are and set as limit
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
-// slider - the slider position to sinc with the click
 function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
     const rightBtn = document.querySelector(".right");
 
@@ -98,8 +97,7 @@ function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
 //when right button is click, shows the next pic 
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
-// slider - the slider position to sinc with the click
-function leftSlider (elementHtml1, elementHtml2, slider) {
+function leftSlider (elementHtml1, elementHtml2) {
     const leftBtn = document.querySelector(".left");
 
     leftBtn.addEventListener("click", () => {
@@ -120,7 +118,6 @@ function leftSlider (elementHtml1, elementHtml2, slider) {
 //on image click change the main picture
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
-// slider - the slider position to sinc with the click
 function onImgClick(elementHtml1, elementHtml2) {
     elementHtml2.forEach((element, index) => {
         element.addEventListener("click", () => {
