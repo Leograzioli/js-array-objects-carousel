@@ -136,6 +136,7 @@ function onImgClick(elementHtml1, elementHtml2) {
 }
 
 
+let autoPlayOn = true;
 //to automaticly change pictures and to set buttons to invert or stop autoplay 
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
@@ -153,33 +154,36 @@ function autoPlay (elementHtml1, elementHtml2) {
         elementHtml2[sliderPosition].classList.add("active");
         
         stopBtn.addEventListener("click", () => {
-            
             clearInterval(interval);
+            autoPlayOn = true;
         })
     }, 2000);
-    
     
     const revertBtn = document.querySelector(".invert-btn");
     revertBtn.addEventListener("click", () => {
         clearInterval(interval)
-
-        const reverseInterval = setInterval(() => {
-
-            elementHtml1[sliderPosition].classList.remove("active");
-        elementHtml2[sliderPosition].classList.remove("active");
-        
-        sliderPosition--
-        if (sliderPosition < 0)
-        sliderPosition = 4 ;
-        
-        elementHtml1[sliderPosition].classList.add("active");
-        elementHtml2[sliderPosition].classList.add("active");
-
-        stopBtn.addEventListener("click", () => {
+        if (autoPlayOn) {
+            const reverseInterval = setInterval(() => {
+    
+                elementHtml1[sliderPosition].classList.remove("active");
+                elementHtml2[sliderPosition].classList.remove("active");
             
-            clearInterval(reverseInterval);
-        })
-        }, 2000)
+                sliderPosition--
+                if (sliderPosition < 0)
+                sliderPosition = 4 ;
+            
+                elementHtml1[sliderPosition].classList.add("active");
+                elementHtml2[sliderPosition].classList.add("active");
+    
+                stopBtn.addEventListener("click", () => {
+                
+                clearInterval(reverseInterval);
+                })
+            }, 2000)
+
+            autoPlayOn = false;
+        }
+
     })
 }
 
