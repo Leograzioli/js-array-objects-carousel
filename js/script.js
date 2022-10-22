@@ -53,7 +53,7 @@ function CreateElement (arrayImg) {
     const upperSlide = document.querySelector(".upper-slide")
     const lowerSlide = document.querySelector(".lower-slide")
 
-    arrayImg.map((element) => {
+    arrayImg.forEach((element) => {
         const upperImg = `
             <div class="card-img">
                 <img src="${element.image}" alt="${element.title}">
