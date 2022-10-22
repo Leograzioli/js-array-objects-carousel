@@ -56,7 +56,7 @@ function CreateElement (arrayImg) {
     arrayImg.map((element) => {
         const upperImg = `
             <div class="card-img">
-                <img src="${element.image}" alt="">
+                <img src="${element.image}" alt="${element.title}">
                 <div class="img-text">
                     <h2>${element.title}</h2>
                     <p>${element.text}</p>
@@ -65,7 +65,7 @@ function CreateElement (arrayImg) {
         `
         const lowerImg = `
             <div class="img-col">
-                <img src="${element.image}" alt="">
+                <img src="${element.image}" alt="${element.title}">
             </div>
         `
         upperSlide.innerHTML += upperImg;
