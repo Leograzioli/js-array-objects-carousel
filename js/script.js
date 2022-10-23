@@ -23,8 +23,7 @@ const images = [
 ];
 
 //create array with key "image"
-const imgTittleArray = images.map(element => element.title);
-const imgTextArray = images.map(element => element.text);
+
 
 CreateElement(images);
 
