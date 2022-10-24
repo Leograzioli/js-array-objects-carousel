@@ -92,7 +92,7 @@ function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
 
     elementHtml1[sliderPosition].classList.add("active");
     elementHtml2[sliderPosition].classList.add("active");
-});
+    });
 }
 
 //when right button is click, shows the next pic 
@@ -113,7 +113,7 @@ function leftSlider (elementHtml1, elementHtml2) {
     
     elementHtml1[sliderPosition].classList.add("active");
     elementHtml2[sliderPosition].classList.add("active");
-})
+    })
 }
 
 //on image click change the main picture
@@ -131,7 +131,7 @@ function onImgClick(elementHtml1, elementHtml2) {
             elementHtml1[sliderPosition].classList.add("active");
             elementHtml2[sliderPosition].classList.add("active");
         })
-});
+    });
 }
 
 
@@ -179,10 +179,7 @@ function autoPlay (elementHtml1, elementHtml2) {
                 clearInterval(reverseInterval);
                 })
             }, 2000)
-
             autoPlayOn = false;
         }
-
     })
 }
-
