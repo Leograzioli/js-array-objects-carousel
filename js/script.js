@@ -23,8 +23,6 @@ const images = [
 ];
 
 //create array with key "image"
-
-
 CreateElement(images);
 
 //initial slider status
@@ -34,11 +32,35 @@ console.log(lowerImageCard);
 let sliderPosition = 0;
 imageCard[sliderPosition].classList.add("active");
 lowerImageCard[sliderPosition].classList.add("active");
-autoPlay(imageCard, lowerImageCard)
+let autoPlayForward = true;
+let autoPlayOn = autoPlay();
+
+//picking html buttons
+const rightBtn = document.querySelector(".right");
+const leftBtn = document.querySelector(".left");
+const stopBtn = document.querySelector(".stop-btn");
+const invertBtn = document.querySelector(".invert-btn");
 
 //button click
-rightSlider(images, imageCard, lowerImageCard);
-leftSlider(imageCard, lowerImageCard);
+rightBtn.addEventListener("click", () => {
+    rightSlider(images, imageCard, lowerImageCard);
+})
+
+leftBtn.addEventListener("click", () => {
+    leftSlider(imageCard, lowerImageCard);
+})
+
+stopBtn.addEventListener("click", () => {
+    clearInterval(autoPlayOn);
+})
+
+invertBtn.addEventListener("click", () => {
+    autoPlayForward = !autoPlayForward
+    clearInterval(autoPlayOn);
+    autoPlayOn = autoPlay();
+})
+
+//on img click 
 onImgClick(imageCard, lowerImageCard);
 
 
@@ -76,10 +98,7 @@ function CreateElement (arrayImg) {
 //imgArray (array) -> to know how many pic are and set as limit
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
-function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
-    const rightBtn = document.querySelector(".right");
-
-    rightBtn.addEventListener("click", () => {
+function rightSlider (imgArray, elementHtml1, elementHtml2) {
 
     elementHtml1[sliderPosition].classList.remove("active");
     elementHtml2[sliderPosition].classList.remove("active");
@@ -91,17 +110,14 @@ function rightSlider (imgArray, elementHtml1, elementHtml2, slider) {
     }
 
     elementHtml1[sliderPosition].classList.add("active");
-    elementHtml2[sliderPosition].classList.add("active");
-    });
+    elementHtml2[sliderPosition].classList.add("active"); 
 }
 
 //when right button is click, shows the next pic 
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
 function leftSlider (elementHtml1, elementHtml2) {
-    const leftBtn = document.querySelector(".left");
 
-    leftBtn.addEventListener("click", () => {
     elementHtml1[sliderPosition].classList.remove("active");
     elementHtml2[sliderPosition].classList.remove("active");
 
@@ -113,14 +129,15 @@ function leftSlider (elementHtml1, elementHtml2) {
     
     elementHtml1[sliderPosition].classList.add("active");
     elementHtml2[sliderPosition].classList.add("active");
-    })
 }
 
 //on image click change the main picture
 // elementHtml1 -> (element html) element html to add and remove class
 // elementHtml2 -> (element html) element html to add and remove class
 function onImgClick(elementHtml1, elementHtml2) {
+
     elementHtml2.forEach((element, index) => {
+
         element.addEventListener("click", () => {
             
             elementHtml1[sliderPosition].classList.remove("active");
@@ -134,52 +151,21 @@ function onImgClick(elementHtml1, elementHtml2) {
     });
 }
 
-
-let autoPlayOn = true;
 //to automaticly change pictures and to set buttons to invert or stop autoplay 
-// elementHtml1 -> (element html) element html to add and remove class
-// elementHtml2 -> (element html) element html to add and remove class
-function autoPlay (elementHtml1, elementHtml2) {
-    const stopBtn = document.querySelector(".stop-btn")
-    const interval = setInterval(() => {
-        elementHtml1[sliderPosition].classList.remove("active");
-        elementHtml2[sliderPosition].classList.remove("active");
-        
-        sliderPosition++
-        if (sliderPosition > 4)
-        sliderPosition = 0 ;
-        
-        elementHtml1[sliderPosition].classList.add("active");
-        elementHtml2[sliderPosition].classList.add("active");
-        
-        stopBtn.addEventListener("click", () => {
-            clearInterval(interval);
-            autoPlayOn = true;
-        })
-    }, 2000);
-    
-    const revertBtn = document.querySelector(".invert-btn");
-    revertBtn.addEventListener("click", () => {
-        clearInterval(interval)
-        if (autoPlayOn) {
-            const reverseInterval = setInterval(() => {
-    
-                elementHtml1[sliderPosition].classList.remove("active");
-                elementHtml2[sliderPosition].classList.remove("active");
-            
-                sliderPosition--
-                if (sliderPosition < 0)
-                sliderPosition = 4 ;
-            
-                elementHtml1[sliderPosition].classList.add("active");
-                elementHtml2[sliderPosition].classList.add("active");
-    
-                stopBtn.addEventListener("click", () => {
-                
-                clearInterval(reverseInterval);
-                })
-            }, 2000)
-            autoPlayOn = false;
-        }
-    })
+//return (variable)
+function autoPlay () {
+    let interval;
+    if (autoPlayForward){
+        interval = setInterval(() => {
+            rightSlider(images, imageCard, lowerImageCard);
+        }, 2000);   
+
+    } else {
+        interval = setInterval(() => {
+            leftSlider(imageCard, lowerImageCard);
+        }, 2000);
+    }
+
+    return interval;
 }
+ 
